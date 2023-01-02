@@ -6,6 +6,8 @@ package com.mycompany.pacman;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 /**
@@ -14,9 +16,55 @@ import javax.swing.JPanel;
  */
 public class Screen extends JPanel{
     
+    final String url = new String("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/titleScreen.jpg");
+    Image titleScreen = Toolkit.getDefaultToolkit().getImage(url);
+    Boolean title;
+    boolean balls[][];
+    boolean states[][];
+    
+    public void init(){
+        for (int i = 0; i < Componant.cellSize; i++) {
+            for (int j = 0; j < Componant.cellSize; j++) {
+                balls[i][j] = true;
+                states[i][j] = true;
+            }
+        }
+    }
+    
+    
+    public Screen(){
+        title = false;
+        balls = new boolean[Componant.cellSize][Componant.cellSize];
+        states = new boolean[Componant.cellSize][Componant.cellSize];
+        init();
+    }
+    
+    
     public void update(Graphics g , int x , int y , int width , int height){
         
         g.drawRect(x, y, width, height); 
+        //g.fillRect(x, y, width, height);
+        
+        for (int i = x/20; i < x/20 + width/20; i++) {
+            for (int j = y/20; j < y/20 + height/20; j++) {
+                balls[i][j] = false;
+                states[i][j] = false;
+            }
+        }
+        
+        
+        
+    }
+    
+    public void drawBalls(Graphics g){
+        g.setColor(Color.yellow);
+        
+        for (int i = 1; i < Componant.cellSize; i++) {
+            for (int j = 1; j < Componant.cellSize; j++) {
+                if(balls[i][j])
+                    g.fillOval(i*20+8, j*20+8, 4, 4);
+            }
+        }
         
         
     }
@@ -66,6 +114,12 @@ public class Screen extends JPanel{
         update(g,240,360,140,20);
         update(g,280,320,20,60);
         update(g,120,320,20,60);
+        
+        if(title)
+            g.drawImage(titleScreen, 0, 0, null);
+        
+        repaint();
+        
     }
     
     @Override
@@ -74,6 +128,7 @@ public class Screen extends JPanel{
         g.fillRect(0, 0, 420, 500);
         
         drawBoard(g);
+        drawBalls(g);
     }
     
     

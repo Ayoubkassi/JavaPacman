@@ -5,6 +5,7 @@
 package com.mycompany.pacman;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -21,6 +22,8 @@ public class Screen extends JPanel{
     final String url = new String("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/titleScreen.jpg");
     Image titleScreen = Toolkit.getDefaultToolkit().getImage(url);
     Image over = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/over.png");
+    Image win = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/win.png");
+
     
     Image red_ghost1 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost10.jpg");
     Image red_ghost2 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost11.jpg");
@@ -212,7 +215,9 @@ public class Screen extends JPanel{
         drawBalls(g);
         drawLives(g);
         
-        //g.drawString("Score : "+score, Componant.max/2, Componant.max);
+        Font f = new Font("Arial",Font.BOLD,20);
+        g.setFont(f);
+        g.drawString("Score : "+score, Componant.max/2+50, Componant.max+30);
         
         g.drawImage(G_red[ghost1.index], ghost1.x ,ghost1.y, null);
         g.drawImage(G_yellow[ghost2.index], ghost2.x ,ghost2.y, null);
@@ -228,7 +233,23 @@ public class Screen extends JPanel{
         {
             g.drawImage(over, 0, 0, null);
         }
+        
+        if(check())
+            g.drawImage(win, 0, 0, null);
   
+    }
+    
+    
+    public boolean check(){
+         
+        for (int i = 1; i < Componant.cellSize; i++) {
+            for (int j = 1; j < Componant.cellSize; j++) {
+                if(balls[i][j])
+                    return false;
+            }
+        }
+        
+        return true;
     }
     
     

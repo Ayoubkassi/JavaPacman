@@ -23,7 +23,7 @@ public class Game implements KeyListener{
     Screen screen = new Screen();
     Timer timer;
     char direction = 'L';
-    boolean flag = true;
+    static boolean flag = true;
     
     
     

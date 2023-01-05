@@ -16,8 +16,12 @@ import javax.swing.JPanel;
  */
 public class Screen extends JPanel{
     
+    int score;
+    
     final String url = new String("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/titleScreen.jpg");
     Image titleScreen = Toolkit.getDefaultToolkit().getImage(url);
+    Image over = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/over.png");
+    
     Image red_ghost1 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost10.jpg");
     Image red_ghost2 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost11.jpg");
     Image[] G_red = {red_ghost1,red_ghost2};
@@ -143,6 +147,8 @@ public class Screen extends JPanel{
         
         pacman.x = 10*Componant.cellSize;
         pacman.y = 15*Componant.cellSize;
+        
+        Game.flag = true;
     }
     
     public void drawBoard(Graphics g){
@@ -206,6 +212,8 @@ public class Screen extends JPanel{
         drawBalls(g);
         drawLives(g);
         
+        //g.drawString("Score : "+score, Componant.max/2, Componant.max);
+        
         g.drawImage(G_red[ghost1.index], ghost1.x ,ghost1.y, null);
         g.drawImage(G_yellow[ghost2.index], ghost2.x ,ghost2.y, null);
         g.drawImage(G_pink[ghost3.index], ghost3.x ,ghost3.y, null);
@@ -216,6 +224,10 @@ public class Screen extends JPanel{
         if(title)
             g.drawImage(titleScreen, 0, 0, null);
         
+        if(lives == 0)
+        {
+            g.drawImage(over, 0, 0, null);
+        }
   
     }
     

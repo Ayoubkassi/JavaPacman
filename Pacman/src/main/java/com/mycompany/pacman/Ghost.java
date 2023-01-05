@@ -65,34 +65,65 @@ public class Ghost extends Componant{
                 break;
             }
             
-            random = (int)Math.random() * 4 +1;
+            random = (int)(Math.random() * 4) +1;
             if(random == 1){
                 newDirection = 'L';
-                x-=speed;
+                newx-=speed;
             }
             else if(random == 2){
                 newDirection = 'R';
-                x+=cellSize;
+                newx+=cellSize;
             }
             
             else if(random == 3){
                 newDirection = 'U';
-                y-=speed;
+                newy-=speed;
             }
             
             else if(random == 4){
                 newDirection = 'D';
-                y+=cellSize;
+                newy+=cellSize;
             }
             
             if( newDirection != backwards ){
                 mySet.add(newDirection);
             }
+            
+            index = random % 2 ;
+            
     }
     
-    return newDirection;
+            return newDirection;
 
+    }
     
+    
+    public void move(){
+        if(choice()){
+            direction = selectDirection();
         }
-}
+        
+        switch(direction){
+            case 'L':
+                if(isValid(x-speed,y))
+                    x-=speed;
+                break;
+                
+            case 'R':
+                if(isValid(x+cellSize,y))
+                    x+=speed;
+                break;
+            case 'D':
+                if(isValid(x,y+cellSize))
+                    y+=speed;
+                break;
+            case 'U':
+                if(isValid(x,y-speed))
+                    y-=speed;
+                break;
+               
+        }
+        
     
+    }
+}

@@ -20,23 +20,39 @@ public class Screen extends JPanel{
     Image titleScreen = Toolkit.getDefaultToolkit().getImage(url);
     Image red_ghost1 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost10.jpg");
     Image red_ghost2 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost11.jpg");
+    Image[] G_red = {red_ghost1,red_ghost2};
     
     Image yellow_ghost1 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost20.jpg");
     Image yellow_ghost2 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost21.jpg");
+    Image[] G_yellow = {yellow_ghost1,yellow_ghost2};
     
     Image blue_ghost1 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost30.jpg");
     Image blue_ghost2 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost31.jpg");
+    Image[] G_blue = {blue_ghost1,blue_ghost2};
     
     Image pink_ghost1 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost40.jpg");
     Image pink_ghost2 = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/ghost41.jpg");
+    Image[] G_pink = {pink_ghost1,pink_ghost2};
     
     
     
-    Image pacman = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/pacman.jpg");
+    Image Pacman = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/pacman.jpg");
     Image pacman_left = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/pacmanleft.jpg");
     Image pacman_right = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/pacmanright.jpg");
     Image pacman_up = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/pacmanup.jpg");
     Image pacman_down = Toolkit.getDefaultToolkit().getImage("/home/ayoub/Desktop/JavaPacman/Pacman/src/main/java/assets/pacmandown.jpg");
+    Image[] Pacman_images = {pacman_left,pacman_right,pacman_down,pacman_up};
+    
+    Pacman pacman = new Pacman(10*Componant.cellSize,15*Componant.cellSize);
+    
+    
+    //GHosts
+    
+    Ghost ghost1 = new Ghost(10*Componant.cellSize,8*Componant.cellSize);
+    Ghost ghost2 = new Ghost(10*Componant.cellSize,9*Componant.cellSize);
+    Ghost ghost3 = new Ghost(11*Componant.cellSize,9*Componant.cellSize);
+    Ghost ghost4 = new Ghost(9*Componant.cellSize,9*Componant.cellSize);
+    
     
     Boolean title;
     boolean balls[][];
@@ -88,7 +104,7 @@ public class Screen extends JPanel{
         for (int i = x/20; i < x/20 + width/20; i++) {
             for (int j = y/20; j < y/20 + height/20; j++) {
                 balls[i][j] = false;
-                states[i][j] = false;
+                states[i-1][j-1] = false;
             }
         }
         
@@ -171,12 +187,12 @@ public class Screen extends JPanel{
         drawBalls(g);
         drawLives(g);
         
-        g.drawImage(red_ghost1, 10*Componant.cellSize ,8*Componant.cellSize, this);
-        g.drawImage(yellow_ghost2, 10*Componant.cellSize ,9*Componant.cellSize, this);
-        g.drawImage(pink_ghost1, 11*Componant.cellSize ,9*Componant.cellSize, this);
-        g.drawImage(blue_ghost2, 9*Componant.cellSize ,9*Componant.cellSize, this);
+        g.drawImage(G_red[ghost1.index], ghost1.x ,ghost1.y, null);
+        g.drawImage(G_yellow[ghost2.index], ghost2.x ,ghost2.y, null);
+        g.drawImage(G_pink[ghost3.index], ghost3.x ,ghost3.y, null);
+        g.drawImage(G_blue[ghost4.index], ghost4.x ,ghost4.y, null);
         
-        g.drawImage(pacman_left, 10*Componant.cellSize ,15*Componant.cellSize, this);
+        g.drawImage(Pacman_images[pacman.index], pacman.x ,pacman.y, null);
         
   
     }

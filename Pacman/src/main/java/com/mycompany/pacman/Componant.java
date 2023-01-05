@@ -10,7 +10,7 @@ package com.mycompany.pacman;
  */
 public class Componant {
     
-    int frameCount = 0;
+    int index = 0;
     boolean states[][];
     static int cellSize = 20;
     static int max = 400;
@@ -18,11 +18,7 @@ public class Componant {
     
     char direction;
     int x,y;
-    int lastX,lastY;
-    
-    
-    int xBall,yBall;
-    int last_xBall,last_yBall;
+ 
     
     
     public Componant(){

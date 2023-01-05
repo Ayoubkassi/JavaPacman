@@ -1,37 +1,47 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package com.mycompany.pacman;
-
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
 
 /**
  *
  * @author ayoub
  */
-public class Pacman {
+public class Pacman extends Componant{
     
-    Screen screen = new Screen();
-    
-    
-    public Pacman(){
-        JFrame frame = new JFrame();
-        frame.setSize(420,500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.add(screen,BorderLayout.CENTER);
-        frame.setTitle("Youssef Pacman");
-        frame.setVisible(true);
-        
-        
-        
+    public Pacman(int x, int y ){
+        this.x = x;
+        this.y = y;
     }
-
-    public static void main(String[] args) {
-        new Pacman();
+    
+    public void move(char direction){
+  
+        switch(direction){
+            case 'L':
+                if(isValid(x-speed,y) && isValid(x-speed,y+cellSize-1))
+                    x-=speed;
+                index = 0;
+                break;
+                
+            case 'R':
+                if(isValid(x+cellSize,y) && isValid(x+cellSize,y+cellSize-1))
+                    x+=speed;
+                index = 1;
+                break;
+            case 'D':
+                if(isValid(x,y+cellSize) && isValid(x+cellSize-1,y+cellSize))
+                    y+=speed;
+                index = 2;
+                break;
+            case 'U':
+                if(isValid(x,y-speed) && isValid(x+cellSize-1,y-speed))
+                    y-=speed;
+                index=3;
+                break;
+               
+        }
         
+    
     }
 }

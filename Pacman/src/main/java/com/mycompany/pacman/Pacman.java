@@ -21,12 +21,16 @@ public class Pacman extends Componant{
             case 'L':
                 if(isValid(x-speed,y) && isValid(x-speed,y+cellSize-5))
                     x-=speed;
+                else if(y > 178 && y < 182 && x == 20)
+                    x = 380;
                 index = 0;
                 break;
                 
             case 'R':
                 if(isValid(x+cellSize,y) && isValid(x+cellSize,y+cellSize-5))
                     x+=speed;
+                else if(y > 178 && y < 182 && x == 380)
+                    x = 20;
                 index = 1;
                 break;
             case 'D':

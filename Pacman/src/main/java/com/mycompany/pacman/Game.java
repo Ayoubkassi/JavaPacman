@@ -40,7 +40,7 @@ public class Game implements KeyListener{
         timer = new Timer(30, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if(!screen.title){
+                if(!screen.title && screen.lives > 0){
                     if(flag){
                         
                         try {
@@ -74,7 +74,12 @@ public class Game implements KeyListener{
                     screen.ghost4.updateStates(screen.states);
 
                     screen.pacman.move(direction);
-                    screen.balls[screen.pacman.x/20][screen.pacman.y/20] = false;
+                    if(screen.balls[screen.pacman.x/20][screen.pacman.y/20]){
+                            screen.balls[screen.pacman.x/20][screen.pacman.y/20] = false;
+                            screen.score++;
+
+                    }
+                    
                     screen.pacman.updateStates(screen.states);
                 }
             }

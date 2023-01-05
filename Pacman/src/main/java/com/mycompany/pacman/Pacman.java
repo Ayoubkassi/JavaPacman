@@ -19,23 +19,23 @@ public class Pacman extends Componant{
   
         switch(direction){
             case 'L':
-                if(isValid(x-speed,y) && isValid(x-speed,y+cellSize-1))
+                if(isValid(x-speed,y) && isValid(x-speed,y+cellSize-5))
                     x-=speed;
                 index = 0;
                 break;
                 
             case 'R':
-                if(isValid(x+cellSize,y) && isValid(x+cellSize,y+cellSize-1))
+                if(isValid(x+cellSize,y) && isValid(x+cellSize,y+cellSize-5))
                     x+=speed;
                 index = 1;
                 break;
             case 'D':
-                if(isValid(x,y+cellSize) && isValid(x+cellSize-1,y+cellSize))
+                if(isValid(x,y+cellSize) && isValid(x+cellSize-5,y+cellSize))
                     y+=speed;
                 index = 2;
                 break;
             case 'U':
-                if(isValid(x,y-speed) && isValid(x+cellSize-1,y-speed))
+                if(isValid(x,y-speed) && isValid(x+cellSize-5,y-speed))
                     y-=speed;
                 index=3;
                 break;

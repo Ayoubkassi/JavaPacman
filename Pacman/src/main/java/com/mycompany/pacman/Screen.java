@@ -89,7 +89,7 @@ public class Screen extends JPanel{
     
     
     public Screen(){
-        title = false;
+        title = true;
         balls = new boolean[Componant.cellSize][Componant.cellSize];
         states = new boolean[Componant.cellSize][Componant.cellSize];
         init();
@@ -123,6 +123,26 @@ public class Screen extends JPanel{
         }
         
         
+    }
+    
+    public void reset(){
+        if(lives>0)
+            lives--;
+        
+        ghost1.x = 10*Componant.cellSize;
+        ghost1.y = 8*Componant.cellSize;
+        
+        ghost2.x = 10*Componant.cellSize;
+        ghost2.y = 9*Componant.cellSize;
+        
+        ghost3.x = 11*Componant.cellSize;
+        ghost3.y = 9*Componant.cellSize;
+        
+        ghost4.x = 9*Componant.cellSize;
+        ghost4.y = 9*Componant.cellSize;
+        
+        pacman.x = 10*Componant.cellSize;
+        pacman.y = 15*Componant.cellSize;
     }
     
     public void drawBoard(Graphics g){
@@ -171,8 +191,7 @@ public class Screen extends JPanel{
         update(g,280,320,20,60);
         update(g,120,320,20,60);
         
-        if(title)
-            g.drawImage(titleScreen, 0, 0, null);
+        
         
         repaint();
         
@@ -193,6 +212,9 @@ public class Screen extends JPanel{
         g.drawImage(G_blue[ghost4.index], ghost4.x ,ghost4.y, null);
         
         g.drawImage(Pacman_images[pacman.index], pacman.x ,pacman.y, null);
+        
+        if(title)
+            g.drawImage(titleScreen, 0, 0, null);
         
   
     }
